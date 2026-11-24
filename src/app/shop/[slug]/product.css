@@ -1,0 +1,263 @@
+.product {
+  padding-top: var(--header);
+}
+.product__crumbs {
+  display: flex;
+  gap: 12px;
+  padding-block: 22px;
+}
+.product__crumbs a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.product__main {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: start;
+  padding-bottom: clamp(56px, 9svh, 110px);
+}
+
+/* gallery: the first shot large, the rest as a two-up contact sheet */
+.product__gallery {
+  grid-column: 1 / span 7;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.4vw, 20px);
+  align-items: start;
+}
+.product__shot {
+  margin: 0;
+  position: relative;
+}
+.product__shot[data-first] {
+  grid-column: 1 / -1;
+}
+.product__shot img {
+  width: 100%;
+  height: auto;
+}
+.product__shot[data-small] {
+  justify-self: center;
+  width: min(100%, 360px);
+}
+.product__shot figcaption {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 6px 9px 5px;
+  background: var(--color-paper);
+  box-shadow: inset 0 0 0 1.5px var(--color-blue);
+  font-size: 10.5px;
+}
+.product__soon {
+  grid-column: 1 / -1;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px, 3vw, 40px);
+  background: repeating-linear-gradient(to bottom, var(--color-blue) 0 28px, var(--color-paper) 28px 56px);
+}
+.product__loading {
+  opacity: 0.35;
+}
+.product__soon-word,
+.product__soon-sub {
+  align-self: flex-start;
+  background: var(--color-paper);
+  padding: 4px 12px;
+}
+.product__soon-word {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(56px, 7vw, 110px);
+  line-height: 0.95;
+}
+.product__soon-sub {
+  font-style: italic;
+  font-size: 24px;
+}
+
+/* the info column stays beside the photos while they scroll */
+.product__info {
+  grid-column: 8 / span 5;
+  position: sticky;
+  top: calc(var(--header) + 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.product__name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(48px, 5.2vw, 92px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+.product__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.product__price span {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 17px;
+}
+.product__desc {
+  font-size: 21px;
+  line-height: 1.4;
+}
+.product__note {
+  font-style: italic;
+  padding-left: 14px;
+  border-left: 3px solid currentColor;
+}
+.product__form {
+  margin-top: 10px;
+  padding: clamp(18px, 2vw, 28px);
+  background: var(--color-cream);
+}
+.product__interest {
+  font-style: italic;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.product__prefs {
+  border: 0;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.product__prefs legend {
+  margin-bottom: 10px;
+}
+.chip {
+  position: relative;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1.5px solid var(--color-blue);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+}
+.chip em {
+  font-family: var(--font-text);
+  font-weight: 400;
+  margin-left: 4px;
+}
+.chip input:checked + span {
+  background: var(--color-blue);
+  color: var(--color-paper);
+}
+.chip input:focus-visible + span {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+.product__size {
+  display: grid;
+  gap: 6px;
+  margin-top: 16px;
+}
+.product__size input {
+  min-height: 44px;
+  border: 0;
+  border-bottom: 2px solid var(--color-blue);
+  background: transparent;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+}
+.product__more {
+  border-top: 2px solid var(--color-blue);
+  padding: 14px 0 0;
+}
+.product__more:last-of-type {
+  border-bottom: 2px solid var(--color-blue);
+  padding-bottom: 14px;
+}
+.product__more summary {
+  cursor: pointer;
+  min-height: 32px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.product__more summary::after {
+  content: "+";
+}
+.product__more[open] summary::after {
+  content: "−";
+}
+.product__more p {
+  margin-top: 8px;
+}
+
+.product__related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+  list-style: none;
+  margin: 0;
+  padding-block: clamp(32px, 5svh, 56px) clamp(56px, 9svh, 110px);
+  background: var(--color-cream);
+}
+
+@media (max-width: 900px) {
+  .product__main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .product__gallery,
+  .product__info {
+    grid-column: 1 / -1;
+  }
+  .product__info {
+    position: static;
+    margin-top: 28px;
+  }
+  /* phones: the photos become a swipeable strip, so the price is never ten photos away */
+  .product__gallery {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .product__shot,
+  .product__shot[data-small] {
+    flex: 0 0 78vw;
+    width: 78vw;
+    scroll-snap-align: start;
+  }
+  .product__shot[data-small] {
+    flex-basis: min(78vw, 360px);
+  }
+}
+@media (max-width: 760px) {
+  .product__related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

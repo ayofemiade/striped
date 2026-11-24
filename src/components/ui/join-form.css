@@ -1,0 +1,95 @@
+.jform {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--color-blue);
+}
+.jform__row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 2px solid var(--color-blue);
+  padding-top: 18px;
+}
+.jform__row em {
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.jform__row input {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  background: transparent;
+  color: var(--color-blue);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(22px, 2.2vw, 30px);
+  outline-offset: 2px;
+}
+.jform__check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.jform__check input {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  accent-color: var(--color-blue);
+  flex: none;
+}
+.jform__error {
+  margin-top: 10px;
+  /* not red: red is reserved for the join action (design system) */
+  font-weight: 650;
+  padding-left: 12px;
+  border-left: 4px solid currentColor;
+}
+.jform__submit {
+  align-self: flex-start;
+  margin-top: 22px;
+}
+.jform__demo {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 14px;
+  /* no opacity: at 85% on cream it measured 4.46:1 (fails 4.5); full blue on cream is 5.85:1 */
+}
+.jform--done {
+  gap: 10px;
+}
+.jform__done-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(44px, 5vw, 80px);
+  line-height: 0.9;
+}
+.jform__done-sub {
+  font-style: italic;
+  font-size: 22px;
+}
+.jform__reset {
+  align-self: flex-start;
+  margin-top: 8px;
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  min-height: 44px;
+}
+@media (max-width: 520px) {
+  .jform__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

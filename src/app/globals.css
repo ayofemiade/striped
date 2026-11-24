@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* STRIPED design tokens: docs/striped/06-design-system.md (contrast measured there). */
+/* `static`: always emit the variables, because route CSS files (hero.css …) use them too. */
+@theme static {
+  --color-paper: #fbf6ec;
+  --color-cream: #f6e8cd;
+  --color-blue: #0055b5;
+  --color-deep: #00306b;
+  --color-sky: #b8dcef;
+  --color-red: #bc1924; /* the join / register-interest action ONLY. Never on blue (1.25:1). */
+  --color-white: #ffffff;
+
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-text: var(--font-newsreader), Georgia, serif;
+
+  --ease-stripe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --gutter: clamp(16px, 3vw, 44px);
+  --band: clamp(60px, 8svh, 88px);
+  --header: 72px;
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-blue);
+  scroll-padding-top: calc(var(--header) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-text);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: var(--color-blue);
+  color: var(--color-paper);
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* ---------- type roles ---------- */
+@utility t-band {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(30px, 4.6vw, 70px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+@utility t-display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(56px, 10vw, 168px);
+  line-height: 0.84;
+  letter-spacing: -0.015em;
+}
+@utility t-statement {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: clamp(32px, 4.8vw, 80px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+@utility t-line {
+  font-family: var(--font-text);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(26px, 3.4vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+@utility t-ui {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-stretch: 100%;
+  font-size: 14px;
+  line-height: 1.2;
+}
+@utility t-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 100%;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility gutter {
+  padding-inline: var(--gutter);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-stretch: 100%;
+  font-size: 15px;
+  border: 1.5px solid currentColor;
+  transition:
+    background-color 0.25s var(--ease-stripe),
+    color 0.25s var(--ease-stripe),
+    transform 0.25s var(--ease-stripe);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-join {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: var(--color-white);
+}
+.btn-join:hover {
+  background: #a3131d;
+  border-color: #a3131d;
+}
+.btn-plain:hover {
+  background: var(--color-blue);
+  color: var(--color-paper);
+  border-color: var(--color-blue);
+}
+.btn-on-blue {
+  color: var(--color-paper);
+}
+.btn-on-blue:hover {
+  background: var(--color-paper);
+  color: var(--color-blue);
+}
+
+/* ---------- the stripe (a chapter) ---------- */
+.stripe-band {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: clamp(14px, 2vw, 28px);
+  min-height: var(--band);
+  padding-block: 10px;
+  padding-inline: var(--gutter);
+  background: var(--color-blue);
+  color: var(--color-paper);
+}
+.stripe-band[data-tone="cream"] {
+  background: var(--color-cream);
+  color: var(--color-blue);
+}
+.stripe-band[data-tone="paper"] {
+  background: var(--color-paper);
+  color: var(--color-blue);
+  box-shadow:
+    inset 0 2px 0 var(--color-blue),
+    inset 0 -2px 0 var(--color-blue);
+}
+.stripe-band .no {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 100%;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+.stripe-band .aside {
+  font-family: var(--font-text);
+  font-style: italic;
+  font-size: 16px;
+  text-align: right;
+  max-width: 34ch;
+}
+@media (max-width: 760px) {
+  .stripe-band {
+    grid-template-columns: auto 1fr;
+  }
+  .stripe-band .aside {
+    grid-column: 2;
+    text-align: left;
+    font-size: 15px;
+    padding-top: 2px;
+  }
+}
+
+/*
+ * Motion 2: a stripe opens. Two panels in the section's own colour part from the centre
+ * (transform only). The content underneath is never clipped, so native lazy-loading and
+ * find-in-page keep working. Panels exist only once JS has confirmed it can open them.
+ */
+@layer base {
+  .stripe-open {
+    background-color: var(--color-paper);
+  }
+}
+.stripe-open {
+  position: relative;
+  /*
+   * Off-screen chapters skip layout and paint until they come near (measured on a 4x-throttled
+   * phone: the 13-screen homepage spent ~3 s in layout at load). `auto` remembers the real size
+   * once a chapter has rendered, so scrolling back up never jumps.
+   */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1400px;
+}
+html.js .stripe-open::before,
+html.js .stripe-open::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  z-index: 3;
+  background: inherit;
+  pointer-events: none;
+  transition: transform 1s var(--ease-stripe);
+}
+html.js .stripe-open::before {
+  top: 0;
+  transform-origin: 50% 0;
+}
+html.js .stripe-open::after {
+  bottom: 0;
+  transform-origin: 50% 100%;
+}
+html.js .stripe-open[data-open="true"]::before,
+html.js .stripe-open[data-open="true"]::after {
+  transform: scaleY(0);
+  /* once open, the panels stop existing as layers (measured: frees ~130 MB on a phone) */
+  visibility: hidden;
+  transition:
+    transform 1s var(--ease-stripe),
+    visibility 0s linear 1s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .stripe-open::before,
+  html.js .stripe-open::after {
+    display: none;
+  }
+}
+
+/* Motion 3: a print lifts */
+.print {
+  transition:
+    transform 0.45s var(--ease-stripe),
+    box-shadow 0.45s var(--ease-stripe);
+}
+.print-host:hover .print,
+.print-host:focus-visible .print {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px -24px rgba(0, 48, 107, 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .print {
+    transition: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

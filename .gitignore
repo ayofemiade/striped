@@ -1,0 +1,16 @@
+.playwright-mcp/
+node_modules/
+.next/
+out/
+.env*
+.vercel
+
+# client originals stay out of the repo (derivatives live in public/images/site)
+assets-src/
+
+# research + QA captures (incl. screenshots of third-party reference sites) stay local
+docs/striped/research/
+docs/striped/qa/
+docs/striped/comps/
+tsconfig.tsbuildinfo
+next-env.d.ts

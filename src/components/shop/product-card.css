@@ -1,0 +1,87 @@
+.pcard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--color-blue);
+}
+.pcard__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--color-paper);
+}
+.pcard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pcard__status {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 6px 9px 5px;
+  background: var(--color-blue);
+  color: var(--color-paper);
+  font-size: 10.5px;
+}
+.pcard[data-preview] .pcard__status {
+  background: var(--color-paper);
+  color: var(--color-blue);
+  box-shadow: inset 0 0 0 1.5px var(--color-blue);
+}
+.pcard__soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-blue) 0 18px,
+    var(--color-paper) 18px 36px
+  );
+}
+.pcard__soon-word,
+.pcard__soon-sub {
+  align-self: flex-start;
+  background: var(--color-paper);
+  padding: 4px 8px;
+}
+.pcard__soon-word {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1;
+}
+.pcard__soon-sub {
+  font-style: italic;
+  font-size: 17px;
+}
+.pcard__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.pcard__price {
+  font-variant-numeric: tabular-nums;
+}
+.pcard__note {
+  margin-top: -6px;
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+.pcard:hover .pcard__name,
+.pcard:focus-visible .pcard__name {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
